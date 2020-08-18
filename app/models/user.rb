@@ -35,9 +35,8 @@ class User < ActiveRecord::Base
         self.banks.map { |bank_instance| "#{bank_instance.bank_name}" } 
     end
 
-    # def add_bank_to_list(bank_instance)
-    #     Userbank.create(user_id: self.id, bank_id: Bank.find(5).id)
-    #     binding.pry
-    # end
+    def add_bank_to_list(bank_instance_id)
+        Userbank.create(user_id: self.id, bank_id: bank_instance_id)
+    end
     
 end
