@@ -45,7 +45,7 @@ class ATMlocator
     puts "-----------------------------------------"
 
     self.prompt.select("What would you like to accomplish today?") do |menu|
-      menu.choice "Find banks by zipcode", -> { puts "--find banks by zipcode method here--" }
+      menu.choice "Find banks by zipcode", -> { Bank.list_banks_by_zipcode }
       menu.choice "Add your bank to a list of banks to which you are a customer", -> { self.user.add_bank_to_list }
       menu.choice "Add/Update favorite bank location(s)", -> { puts "--method here to update userbank row 'user_fav attribute'--"}
       menu.choice "Delete a bank from your list", -> { puts "--Userbank find associated row and .destroy here to disassociate--" }

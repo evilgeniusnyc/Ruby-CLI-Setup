@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
 
     def user_bank_list
         self.banks.map { |bank_instance| "#{bank_instance.bank_name}" }.uniq 
-    end
+    end #returns an array of uniq bank names
 
     def add_bank_to_list
         prompt = TTY::Prompt.new
