@@ -12,3 +12,4 @@ gem "pry"
 gem "faker"
 gem "csv"
 gem "colorize"
+gem "tty-prompt"  # uploaded by Steven 
