@@ -40,11 +40,11 @@ class User < ActiveRecord::Base
         prompt = TTY::Prompt.new
         bank_instance_id = prompt.ask("Please add a bank by their bank id number =] -->", required: true) { |q| q.in("1-5612") }
 
-        new_bank = Userbank.create(user_id: self.id, bank_id: bank_instance_id)
+        new_userbank = Userbank.create(user_id: self.id, bank_id: bank_instance_id)
 
         sleep 1
 
-        new_bank = Bank.find(new_bank.bank_id)
+        new_bank = Bank.find(new_userbank.bank_id)
         if !self.user_bank_list.include? new_bank.bank_name 
             puts "Here's the updated bank list for you --> #{self.user_bank_list.uniq << new_bank.bank_name}"
         else
