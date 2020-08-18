@@ -30,5 +30,14 @@ class User < ActiveRecord::Base
     def self.create_unique_id
         rand.to_s[2..7]
     end
+
+    def user_bank_list
+        self.banks.map { |bank_instance| "#{bank_instance.bank_name}" } 
+    end
+
+    # def add_bank_to_list(bank_instance)
+    #     Userbank.create(user_id: self.id, bank_id: Bank.find(5).id)
+    #     binding.pry
+    # end
     
 end

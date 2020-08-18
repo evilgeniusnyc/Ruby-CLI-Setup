@@ -36,7 +36,7 @@ class ATMlocator
   def main_menu
     puts "-----------------------------------------"
     puts "Hello #{self.user.user_name}, this is the main menu."
-    puts "You are a customer at these banks --method here to return a list of banks to which the user is a customer of--"
+    puts "You are a customer at these banks --#{self.user.user_bank_list}--"
 
     self.prompt.select("What would you like to accomplish today?") do |menu|
       menu.choice "Find banks by zipcode", -> { puts "--find banks by zipcode method here--" }
