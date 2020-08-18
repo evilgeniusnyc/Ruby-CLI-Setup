@@ -33,7 +33,7 @@ class User < ActiveRecord::Base
     end
 
     def user_bank_list
-        self.banks.map { |bank_instance| "#{bank_instance.bank_name}" } 
+        self.banks.map { |bank_instance| "#{bank_instance.bank_name}" }.uniq 
     end
 
     def add_bank_to_list
@@ -45,7 +45,12 @@ class User < ActiveRecord::Base
         sleep 1
 
         new_bank = Bank.find(new_bank.bank_id)
-        puts "Here's the updated bank list for you --> #{self.user_bank_list << new_bank.bank_name}"
+        if !self.user_bank_list.include? new_bank.bank_name 
+            puts "Here's the updated bank list for you --> #{self.user_bank_list.uniq << new_bank.bank_name}"
+        else
+            Userbank.last.destroy #destroys the newly created Userbank isntance instead of implementing conditional
+            puts "Duplication breh."
+        end
     end
 
     
