@@ -8,13 +8,52 @@ class ATMlocator
     @prompt = TTY::Prompt.new
   end
 
+  def loading_animation
+    puts "-----------------------------------------"
+    print "Loading."
+    sleep 0.2 
+    print "."
+    sleep 0.2 
+    print "."
+    sleep 0.2
+    print "."
+    sleep 0.2
+    print "."
+    sleep 0.2
+    print "."
+    sleep 0.2
+    print "."
+    sleep 0.2
+    print "."
+    sleep 0.2
+    print "."
+    sleep 0.2
+    print "."
+    sleep 0.2
+    print "."
+  end
+
+  def loading_message
+    prompt = TTY::Prompt.new
+    prompt.ok(self.loading_animation)
+  end
+
+  def no_bank_message
+    prompt = TTY::Prompt.new 
+    prompt.warn("We don't have a list of banks to which you are a customer yet.")
+  end
+
+  def friendly_bank_list
+    prompt = TTY::Prompt.new 
+    prompt.ok("You are a customer at these banks --#{self.user.user_bank_list}--")
+  end
+
   def welcome
     puts "-----------------------------------------"
     puts "Hi Friend, Welcome to our ATM locator app!"
   end
 
   def login_or_register
-    puts "-----------------------------------------"
     user_choice = self.prompt.select("Logging in or Registering?",
     [
       "Logging-in",
@@ -23,12 +62,12 @@ class ATMlocator
     )
 
     if user_choice == "Logging-in"
-      puts "-----------------------------------------"
-      puts "Alright, let's get you logged in!"
+      self.loading_message
+      puts "\n\Alright, let's get you logged in!"
       User.user_logging_in
     elsif user_choice == "Register"
-      puts "-----------------------------------------"
-      puts "Alright, let's get you registered!"
+      self.loading_message
+      puts "\n\Alright, let's get you registered!"
       User.register_user
     end
   end
@@ -38,9 +77,9 @@ class ATMlocator
     puts "Hello #{self.user.user_name}, this is the main menu."
 
     if self.user.user_bank_list.length != 0
-      puts "You are a customer at these banks --#{self.user.user_bank_list}--"
+      self.friendly_bank_list
     else
-      puts "We don't have a list of banks to which you are a customer yet."
+      self.no_bank_message
     end
     puts "-----------------------------------------"
 
@@ -52,6 +91,7 @@ class ATMlocator
       menu.choice "Delete your user account", -> { puts "--Delete user instance and userbank rows associated with user here--" }
       menu.choice "Not what you are looking for? Click here for more.", -> { puts "--sub_menu here--"}
     end
+
   end
 
   def run
@@ -59,7 +99,7 @@ class ATMlocator
 
     user_instance = self.login_or_register
     self.user = user_instance
-    self.main_menu # frankenstine code from watching one of Eric's lecture
+    self.main_menu
 
     # wanna_see_favs?
     # get_joke(what_subject)

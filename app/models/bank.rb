@@ -14,7 +14,6 @@ class Bank < ActiveRecord::Base
       puts bank.id.to_s + "--" + bank.bank_name + ", " + bank.street_address + ", " + bank.city + ", " + bank.zipcode
     end
 
-    # binding.pry
     
   end
 end
