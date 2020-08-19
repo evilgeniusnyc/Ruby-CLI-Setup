@@ -46,7 +46,7 @@ class User < ActiveRecord::Base
 
         new_bank = Bank.find(new_userbank.bank_id)
         if !self.user_bank_list.include? new_bank.bank_name 
-            puts "Here's the updated bank list for you --> #{self.user_bank_list.uniq << new_bank.bank_name}"
+            puts "Here's the updated bank list for you --> #{self.user_bank_list.uniq << new_bank.bank_name}".green
         else
             Userbank.last.destroy #destroys the newly created Userbank isntance instead of implementing conditional
             puts "Duplication breh."
