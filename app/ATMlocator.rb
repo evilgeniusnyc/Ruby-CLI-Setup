@@ -10,16 +10,12 @@ class ATMlocator
   def friendly_bank_list
     prompt = TTY::Prompt.new 
     prompt.ok("You are a customer at these banks --#{self.user_bank_list}--" )
-    puts "Bank list takes a day to update =/"
   end
 
 
   def login_or_register
     user_choice = self.prompt.select("Logging in or Registering?",
-    [
-      "Logging-in",
-      "Register"
-    ]
+    [ "Logging-in", "Register" ]
     )
 
     if user_choice == "Logging-in"
@@ -101,7 +97,6 @@ class ATMlocator
     keypress = prompt.keypress("***Press enter to go back to main menu***".yellow, keys: [:return])
 
     self.main_menu if keypress
-
   end
 
 
@@ -114,7 +109,6 @@ class ATMlocator
   end
 
   private
-
 
 end
 

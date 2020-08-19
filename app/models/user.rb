@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
         user_name = prompt.ask("Please input your username -->", required: true)
 
         User.create(user_name: user_name)
-        # thinking about adding another column to users table just for fun, assigning a 6 digit "unique_id" to each user.
     end
     
 end
